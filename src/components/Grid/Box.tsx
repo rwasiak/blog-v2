@@ -15,7 +15,9 @@ export interface BoxProps
     LayoutProps,
     BorderProps {}
 
-const Box = styled.div<BoxProps>`
+const Box = styled.div.attrs(() => ({
+  test: 'asd',
+}))<BoxProps>`
   ${space}
   ${display}
   ${layout}

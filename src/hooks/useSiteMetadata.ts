@@ -14,6 +14,8 @@ const useSiteMetadata = () => {
             siteLanguage
             siteLocale
             twitterUsername
+            githubUsername
+            linkedinUsername
             authorName
           }
         }

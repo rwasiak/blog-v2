@@ -9,7 +9,7 @@ import {
   LiveProvider,
   withLive,
 } from 'react-live';
-import copyToClipboard from '../utils/copyToClipboard';
+import copyToClipboard from '../../utils/copyToClipboard';
 
 interface CodeProps {
   codeString: string;
