@@ -3,25 +3,26 @@ import { BasicTheme, ExtendedTheme, Theme } from '../design-system';
 const basicTheme: BasicTheme = {
   space: [0, 2, 4, 8, 12, 16, 24, 32, 48, 64],
   maxWidths: {
-    aside: 400,
-    content: 800,
+    mainContent: [null, null, 800, 1100],
+    postContent: 800,
   },
   breakpoints: ['576px', '768px', '1366px', '1680px'],
   colors: {
     black: '#2f2f2f',
-    white: '#FFFFFF',
-    primary: '#AA0505',
-    secondary: '#FBCA03',
-    tertiary: '#FFF8E1',
+    white: '#f9f4f3',
+    primary: '#2a2a2a',
+    secondary: '#f5a46b',
+    tertiary: '#535353',
+    highlightInteractive: '#a8c564',
   },
   fonts: {
     primary: 'Montserrat, sans-serif',
-    secondary: 'Oswald, sans-serif',
+    secondary: 'Open Sans, sans-serif',
   },
 };
 
 const extendedTheme: ExtendedTheme = {
-  typography: {
+  typographyStyles: {
     headingS: {
       fontFamily: basicTheme.fonts.secondary,
       fontWeight: 400,
@@ -111,6 +112,16 @@ const extendedTheme: ExtendedTheme = {
       textTransform: 'none',
       fontStyle: 'italic',
       lineHeight: ['22px', '22px', '24px'],
+    },
+  },
+  grid: {
+    containerPx: [4, 7],
+  },
+  link: {
+    color: basicTheme.colors.secondary,
+    activeStyles: {
+      color: basicTheme.colors.highlightInteractive,
+      textDecoration: 'none',
     },
   },
 };

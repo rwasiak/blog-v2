@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider, ThemeProviderProps } from 'styled-components';
+import { SpaceProps } from 'styled-system';
 
 export * from 'styled-components';
 export * from 'styled-system';
@@ -12,6 +13,7 @@ export interface Colors {
   primary: string;
   secondary: string;
   tertiary: string;
+  highlightInteractive: string;
 }
 
 export interface TextStyle {
@@ -36,9 +38,14 @@ export type TextStyleTypes =
   | 'quoteS'
   | 'quote';
 
-export type Typography = {
+export type TypographyStyles = {
   [K in TextStyleTypes]: TextStyle;
 };
+
+export interface ActiveLinkStyles {
+  color: string;
+  textDecoration: string;
+}
 
 export interface BasicTheme {
   space: [
@@ -54,8 +61,8 @@ export interface BasicTheme {
     number,
   ];
   maxWidths: {
-    aside: number;
-    content: number;
+    mainContent: number | (number | null)[];
+    postContent: number | (number | null)[];
   };
   breakpoints: string[];
   colors: Colors;
@@ -66,7 +73,14 @@ export interface BasicTheme {
 }
 
 export interface ExtendedTheme {
-  typography: Typography;
+  typographyStyles: TypographyStyles;
+  grid: {
+    containerPx: SpaceProps['px'];
+  };
+  link: {
+    color: string;
+    activeStyles: ActiveLinkStyles;
+  };
 }
 
 export interface Theme extends BasicTheme, ExtendedTheme {}
