@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import { PostsBySlugQuery as BlogPostData } from '../../gen/graphql-types';
 
 export interface BlogPost {

@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import SEO from 'react-seo-component';
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import { BlogPostsQuery } from '../../gen/graphql-types';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 

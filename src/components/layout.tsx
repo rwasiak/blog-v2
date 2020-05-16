@@ -1,38 +1,43 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 import useSiteMetadata from '../hooks/useSiteMetadata';
+import {
+  DesignSystemProvider,
+  space,
+  SpaceProps,
+  Normalize,
+} from '../design-system';
+import BasicTheme from '../themes/basic';
+import Header from './Header';
 
-import Header from './header';
-import './layout.css';
-
-const FooterContainer = styled.div`
+const FooterContainer = styled.div<SpaceProps>`
+  ${space}
   margin: 0 auto;
-  max-width: 960px;
-  padding: 0px 1.0875rem 1.45rem;
-  padding-top: 0;
+  padding: 0 1.0875rem 1.45rem;
 `;
 
 const Layout: React.FC = ({ children }) => {
   const siteMetadata = useSiteMetadata();
 
   return (
-    <>
+    <DesignSystemProvider theme={BasicTheme}>
+      <Normalize />
+      <Helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;1,300&family=Oswald:wght@400;600&display=swap"
+          rel="stylesheet"
+        />
+      </Helmet>
       <Header siteTitle={siteMetadata && siteMetadata.title} />
-      <FooterContainer>
+      <FooterContainer pt={[0, 3, 5]}>
         <main>{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with{' '}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
       </FooterContainer>
-    </>
+    </DesignSystemProvider>
   );
 };
 
