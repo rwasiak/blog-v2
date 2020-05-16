@@ -1,0 +1,35 @@
+{
+  "processors": [
+    [
+      "stylelint-processor-styled-components",
+      {
+        "moduleName": "styled-components"
+      }
+    ]
+  ],
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-standard",
+    "stylelint-config-styled-components"
+  ],
+  "rules": {
+    "property-no-vendor-prefix": true,
+    "selector-type-case": [
+      "lower",
+      {
+        "ignoreTypes": [
+          "/^\\$\\w+/"
+        ]
+      }
+    ],
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignoreTypes": [
+          "/^\\$\\w+/"
+        ]
+      }
+    ],
+    "value-keyword-case": null
+  }
+}

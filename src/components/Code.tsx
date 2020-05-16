@@ -24,10 +24,12 @@ export const Pre = styled.pre`
   padding: 0.5em;
   overflow-x: auto;
   border-radius: 3px;
+
   & .token-line {
     line-height: 1.3em;
     height: 1.3em;
   }
+
   font-family: 'Courier New', Courier, monospace;
 `;
 
@@ -45,6 +47,7 @@ const CopyCode = styled.button`
   border-radius: 3px;
   margin: 0.25em;
   opacity: 0.3;
+
   &:hover {
     cursor: pointer;
     opacity: 1;

@@ -29,11 +29,15 @@
     "react-helmet": "^6.0.0",
     "react-live": "^2.2.2",
     "react-seo-component": "^2.0.0",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "styled-normalize": "^8.0.7",
+    "styled-system": "^5.1.5"
   },
   "devDependencies": {
     "@types/react-helmet": "^5.0.15",
     "@types/styled-components": "^5.0.1",
+    "@types/styled-system": "^5.1.9",
+    "@types/styled-system__theme-get": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "eslint": "^6.8.0",
@@ -47,6 +51,11 @@
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
     "prettier": "^1.19.1",
+    "stylelint": "^13.3.3",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0",
     "typescript": "^3.8.3"
   },
   "keywords": [
@@ -61,7 +70,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "lint": "tsc --noEmit && eslint '*/**/*.{ts,tsx}' --quiet --fix"
+    "lint": "tsc --noEmit && eslint '*/**/*.{ts,tsx}' --quiet --fix && stylelint './src/**/*.{tsx,ts}'"
   },
   "husky": {
     "hooks": {
@@ -72,6 +81,7 @@
     "*.{ts,tsx}": [
       "prettier --write",
       "eslint",
+      "stylelint",
       "git add"
     ],
     "*.{js,json,md}": [
