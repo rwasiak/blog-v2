@@ -732,6 +732,7 @@ export type FileFieldsEnum =
   | 'childMdx___frontmatter___cover___publicURL'
   | 'childMdx___frontmatter___cover___id'
   | 'childMdx___frontmatter___cover___children'
+  | 'childMdx___frontmatter___teaser'
   | 'childMdx___body'
   | 'childMdx___excerpt'
   | 'childMdx___headings'
@@ -1533,6 +1534,7 @@ export type MdxFieldsEnum =
   | 'frontmatter___cover___childMdx___timeToRead'
   | 'frontmatter___cover___childMdx___id'
   | 'frontmatter___cover___childMdx___children'
+  | 'frontmatter___teaser'
   | 'body'
   | 'excerpt'
   | 'headings'
@@ -1661,6 +1663,7 @@ export type MdxFrontmatter = {
   date?: Maybe<Scalars['Date']>;
   published?: Maybe<Scalars['Boolean']>;
   cover?: Maybe<File>;
+  teaser?: Maybe<Scalars['String']>;
 };
 
 
@@ -1676,6 +1679,7 @@ export type MdxFrontmatterFilterInput = {
   date?: Maybe<DateQueryOperatorInput>;
   published?: Maybe<BooleanQueryOperatorInput>;
   cover?: Maybe<FileFilterInput>;
+  teaser?: Maybe<StringQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -2237,6 +2241,8 @@ export type SiteFieldsEnum =
   | 'siteMetadata___siteLanguage'
   | 'siteMetadata___siteLocale'
   | 'siteMetadata___twitterUsername'
+  | 'siteMetadata___githubUsername'
+  | 'siteMetadata___linkedinUsername'
   | 'siteMetadata___authorName'
   | 'port'
   | 'host'
@@ -2622,6 +2628,7 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___dest'
   | 'pluginCreator___pluginOptions___isTSX'
   | 'pluginCreator___pluginOptions___allExtensions'
+  | 'pluginCreator___pluginOptions___rule___omitKeys'
   | 'pluginCreator___pluginOptions___exclude'
   | 'pluginCreator___pluginOptions___branch_deploy___policy'
   | 'pluginCreator___pluginOptions___deploy_preview___policy'
@@ -2850,6 +2857,7 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___dest'
   | 'pluginOptions___isTSX'
   | 'pluginOptions___allExtensions'
+  | 'pluginOptions___rule___omitKeys'
   | 'pluginOptions___exclude'
   | 'pluginOptions___env___production___host'
   | 'pluginOptions___env___production___sitemap'
@@ -2993,6 +3001,7 @@ export type SitePluginPluginOptions = {
   dest?: Maybe<Scalars['String']>;
   isTSX?: Maybe<Scalars['Boolean']>;
   allExtensions?: Maybe<Scalars['Boolean']>;
+  rule?: Maybe<SitePluginPluginOptionsRule>;
   exclude?: Maybe<Array<Maybe<Scalars['String']>>>;
   env?: Maybe<SitePluginPluginOptionsEnv>;
   branch_deploy?: Maybe<SitePluginPluginOptionsBranch_Deploy>;
@@ -3104,6 +3113,7 @@ export type SitePluginPluginOptionsFilterInput = {
   dest?: Maybe<StringQueryOperatorInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
+  rule?: Maybe<SitePluginPluginOptionsRuleFilterInput>;
   exclude?: Maybe<StringQueryOperatorInput>;
   env?: Maybe<SitePluginPluginOptionsEnvFilterInput>;
   branch_deploy?: Maybe<SitePluginPluginOptionsBranch_DeployFilterInput>;
@@ -3187,6 +3197,14 @@ export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   maxWidth?: Maybe<IntQueryOperatorInput>;
 };
 
+export type SitePluginPluginOptionsRule = {
+  omitKeys?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type SitePluginPluginOptionsRuleFilterInput = {
+  omitKeys?: Maybe<StringQueryOperatorInput>;
+};
+
 export type SitePluginSortInput = {
   fields?: Maybe<Array<Maybe<SitePluginFieldsEnum>>>;
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
@@ -3200,6 +3218,8 @@ export type SiteSiteMetadata = {
   siteLanguage: Scalars['String'];
   siteLocale: Scalars['String'];
   twitterUsername: Scalars['String'];
+  githubUsername: Scalars['String'];
+  linkedinUsername: Scalars['String'];
   authorName: Scalars['String'];
 };
 
@@ -3211,6 +3231,8 @@ export type SiteSiteMetadataFilterInput = {
   siteLanguage?: Maybe<StringQueryOperatorInput>;
   siteLocale?: Maybe<StringQueryOperatorInput>;
   twitterUsername?: Maybe<StringQueryOperatorInput>;
+  githubUsername?: Maybe<StringQueryOperatorInput>;
+  linkedinUsername?: Maybe<StringQueryOperatorInput>;
   authorName?: Maybe<StringQueryOperatorInput>;
 };
 
@@ -3232,15 +3254,15 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
-export type DemoImageQueryVariables = {};
+export type FaceImageQueryVariables = {};
 
 
-export type DemoImageQuery = { placeholderImage?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }> };
+export type FaceImageQuery = { placeholderImage?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }> };
 
 export type SiteMetaDataQueryVariables = {};
 
 
-export type SiteMetaDataQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'image' | 'siteUrl' | 'siteLanguage' | 'siteLocale' | 'twitterUsername' | 'authorName'>> }> };
+export type SiteMetaDataQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'image' | 'siteUrl' | 'siteLanguage' | 'siteLocale' | 'twitterUsername' | 'githubUsername' | 'linkedinUsername' | 'authorName'>> }> };
 
 export type BlogPostsQueryVariables = {};
 
@@ -3248,10 +3270,10 @@ export type BlogPostsQueryVariables = {};
 export type BlogPostsQuery = { allMdx: { nodes: Array<(
       Pick<Mdx, 'id' | 'excerpt'>
       & { fields?: Maybe<Pick<MdxFields, 'slug'>>, frontmatter?: Maybe<(
-        Pick<MdxFrontmatter, 'title' | 'date'>
+        Pick<MdxFrontmatter, 'title' | 'date' | 'teaser'>
         & { cover?: Maybe<(
           Pick<File, 'publicURL'>
-          & { childImageSharp?: Maybe<{ sizes?: Maybe<GatsbyImageSharpSizes_TracedSvgFragment> }> }
+          & { childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }
         )> }
       )> }
     )> } };

@@ -21,7 +21,7 @@ const BlogPostPage: React.FC<BlogPost> = ({ data, pageContext }) => {
 
   const { frontmatter, body } = data.mdx;
   return (
-    <Layout>
+    <Layout type="postContent">
       <h1>{frontmatter.title}</h1>
       <p>{frontmatter.date}</p>
       <MDXRenderer>{body}</MDXRenderer>

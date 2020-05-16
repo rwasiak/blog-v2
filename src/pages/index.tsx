@@ -1,16 +1,11 @@
-import React from 'react';
-import { Link, graphql } from 'gatsby';
-import styled from 'styled-components';
-import Img from 'gatsby-image';
+import * as React from 'react';
+import { graphql } from 'gatsby';
 import SEO from 'react-seo-component';
+import { Box } from '../components/Grid';
+import BlogPostTeaser from '../components/BlogPostTeaser';
 import Layout from '../components/Layout';
 import { BlogPostsQuery } from '../../gen/graphql-types';
 import useSiteMetadata from '../hooks/useSiteMetadata';
-
-const ImageContainer = styled.div`
-  max-width: 300px;
-  margin-bottom: 1.45rem;
-`;
 
 export interface HomePage {
   data: BlogPostsQuery;
@@ -29,7 +24,7 @@ const IndexPage: React.FC<HomePage> = ({ data }) => {
   } = useSiteMetadata();
 
   return (
-    <Layout>
+    <Layout type="mainContent">
       <SEO
         title={title}
         description={description}
@@ -38,20 +33,13 @@ const IndexPage: React.FC<HomePage> = ({ data }) => {
         siteLanguage={siteLanguage}
         siteLocale={siteLocale}
         twitterUsername={twitterUsername}
-        titleTemplate="titleTemplate"
+        titleTemplate="Blog"
       />
-      {posts.map(post => (
-        <div key={post.fields?.slug}>
-          {post.frontmatter?.cover && (
-            <ImageContainer>
-              <Img sizes={post.frontmatter?.cover.childImageSharp?.sizes} />
-            </ImageContainer>
-          )}
-          {post.fields?.slug && (
-            <Link to={post.fields?.slug}>{post.frontmatter?.title || ''}</Link>
-          )}
-        </div>
-      ))}
+      <Box pt={[4, 7, 7, 9]}>
+        {posts.map(post => (
+          <BlogPostTeaser key={post.id} blogPostData={post} />
+        ))}
+      </Box>
     </Layout>
   );
 };
@@ -76,11 +64,12 @@ export const homePageQuery = graphql`
           cover {
             publicURL
             childImageSharp {
-              sizes(maxWidth: 2000, traceSVG: { color: "#639" }) {
-                ...GatsbyImageSharpSizes_tracedSVG
+              fluid(maxWidth: 1200) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
+          teaser
         }
       }
     }
