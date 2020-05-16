@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
+import useSiteMetadata from '../hooks/useSiteMetadata';
 
 interface SEOProps {
   description?: string;
@@ -16,30 +16,22 @@ interface SEOProps {
   title: string;
 }
 
-function SEO({ description = '', lang = 'pl', meta = [], title }: SEOProps) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `,
-  );
-
-  const metaDescription = description || site.siteMetadata.description;
+const SEO = ({
+  description: customDescription = '',
+  lang = 'pl',
+  meta = [],
+  title: customTitle,
+}: SEOProps) => {
+  const { title, description, authorName } = useSiteMetadata();
+  const metaDescription = customDescription || description;
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={customTitle}
+      titleTemplate={`%s | ${title}`}
       meta={[
         {
           name: `description`,
@@ -47,7 +39,7 @@ function SEO({ description = '', lang = 'pl', meta = [], title }: SEOProps) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: customTitle,
         },
         {
           property: `og:description`,
@@ -63,11 +55,11 @@ function SEO({ description = '', lang = 'pl', meta = [], title }: SEOProps) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: authorName,
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: customTitle,
         },
         {
           name: `twitter:description`,
@@ -76,6 +68,6 @@ function SEO({ description = '', lang = 'pl', meta = [], title }: SEOProps) {
       ].concat(meta)}
     />
   );
-}
+};
 
 export default SEO;

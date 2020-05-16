@@ -1,24 +1,35 @@
 {
-  "name": "gatsby-typescript-eslint-prettier-starter",
+  "name": "remigiusz-wasiak-blog-v2",
   "private": true,
-  "description": "Gatsby starter with typescript, eslint, prettier, styled-components",
+  "description": "Remigiusz Wasiak Blog",
   "version": "1.0.0",
   "author": "Remigiusz Wasiak",
   "dependencies": {
+    "@mdx-js/mdx": "^1.6.1",
+    "@mdx-js/react": "^1.6.1",
     "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.21.8",
     "gatsby-image": "^2.3.0",
+    "gatsby-plugin-extract-schema": "^0.0.5",
     "gatsby-plugin-manifest": "^2.3.1",
+    "gatsby-plugin-mdx": "^1.2.4",
     "gatsby-plugin-react-helmet": "^3.2.0",
+    "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sharp": "^2.5.1",
-    "gatsby-plugin-styled-components": "^3.2.0",
+    "gatsby-plugin-sitemap": "^2.4.1",
+    "gatsby-plugin-styled-components": "^3.3.1",
+    "gatsby-plugin-ts": "^2.7.1",
     "gatsby-plugin-typescript": "^2.3.0",
+    "gatsby-remark-images": "^3.3.2",
     "gatsby-source-filesystem": "^2.2.1",
     "gatsby-transformer-sharp": "^2.4.1",
+    "prism-react-renderer": "^1.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
-    "styled-components": "^5.0.1"
+    "react-live": "^2.2.2",
+    "react-seo-component": "^2.0.0",
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "@types/react-helmet": "^5.0.15",
@@ -36,7 +47,6 @@
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
     "prettier": "^1.19.1",
-    "standard-version": "^7.1.0",
     "typescript": "^3.8.3"
   },
   "keywords": [
@@ -51,8 +61,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "lint": "tsc --noEmit && eslint '*/**/*.{ts,tsx}' --quiet --fix",
-    "bump": "standard-version"
+    "lint": "tsc --noEmit && eslint '*/**/*.{ts,tsx}' --quiet --fix"
   },
   "husky": {
     "hooks": {
@@ -72,6 +81,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rwasiak/gatsby-typescript-eslint-prettier-starter"
+    "url": "https://github.com/rwasiak/blog-v2"
   }
 }

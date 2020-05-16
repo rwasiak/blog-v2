@@ -6,8 +6,8 @@
  */
 
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
+import useSiteMetadata from '../hooks/useSiteMetadata';
 
 import Header from './header';
 import './layout.css';
@@ -20,19 +20,11 @@ const FooterContainer = styled.div`
 `;
 
 const Layout: React.FC = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+  const siteMetadata = useSiteMetadata();
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header siteTitle={siteMetadata && siteMetadata.title} />
       <FooterContainer>
         <main>{children}</main>
         <footer>
