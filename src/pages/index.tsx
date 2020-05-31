@@ -12,7 +12,7 @@ export interface HomePage {
 }
 
 const IndexPage: React.FC<HomePage> = ({ data }) => {
-  const { nodes: posts } = data.allMdx;
+  const { edges: posts } = data.allMdx;
   const {
     description,
     title,
@@ -33,11 +33,11 @@ const IndexPage: React.FC<HomePage> = ({ data }) => {
         siteLanguage={siteLanguage}
         siteLocale={siteLocale}
         twitterUsername={twitterUsername}
-        titleTemplate="Blog"
+        titleTemplate="JAMstack, React, TypeScript, Next.js, GraphQL"
       />
       <Box pt={[4, 7, 7, 9]}>
         {posts.map(post => (
-          <BlogPostTeaser key={post.id} blogPostData={post} />
+          <BlogPostTeaser key={post.node.id} blogPostData={post.node} />
         ))}
       </Box>
     </Layout>
@@ -52,24 +52,25 @@ export const homePageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { published: { eq: true } } }
     ) {
-      nodes {
-        id
-        excerpt(pruneLength: 250)
-        fields {
-          slug
-        }
-        frontmatter {
-          title
-          date(formatString: "DD MM YYYY")
-          cover {
-            publicURL
-            childImageSharp {
-              fluid(maxWidth: 1200) {
-                ...GatsbyImageSharpFluid
+      edges {
+        node {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            date(locale: "pl", formatString: "LL")
+            cover {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
+            coverTitle
+            teaser
           }
-          teaser
         }
       }
     }
