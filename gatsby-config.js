@@ -9,7 +9,7 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 
 module.exports = {
   siteMetadata: {
-    title: 'Remigiusz Wasiak',
+    title: 'Remigiusz Wasiak Blog',
     description:
       'Znajdziesz tu informacje o JAMstack, React, TypeScript, Next.js i GraphQL.',
     image: '/',
@@ -22,7 +22,6 @@ module.exports = {
     authorName: 'Remigiusz Wasiak',
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -48,12 +47,11 @@ module.exports = {
               maxWidth: 800,
             },
           },
-        ],
-        plugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: `gatsby-remark-copy-linked-files`,
             options: {
-              maxWidth: 800,
+              destinationDir: 'assets',
+              ignoreFileExtensions: [`png`, `jpg`, `jpeg`],
             },
           },
         ],
@@ -71,8 +69,6 @@ module.exports = {
         icon: `src/images/rw-icon.png`,
       },
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
     {
       resolve: `gatsby-plugin-styled-components`,
       options: {
@@ -84,7 +80,7 @@ module.exports = {
       resolve: `gatsby-plugin-graphql-codegen`,
       options: {
         fileName: `gen/graphql-types.ts`,
-        // codegen: false,
+        codegen: false, // enable only for generating types (causes performance issues https://github.com/d4rekanguok/gatsby-typescript/issues/93)
         codegenConfig: {
           maybeValue: 'T | undefined',
         },
@@ -104,19 +100,9 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-react-svg`,
+      resolve: 'gatsby-plugin-svgr',
       options: {
-        rule: {
-          include: /images\/.*\.svg/,
-          omitKeys: [
-            'xmlnsDc',
-            'xmlnsCc',
-            'xmlnsRdf',
-            'xmlnsSvg',
-            'xmlnsSodipodi',
-            'xmlnsInkscape',
-          ],
-        },
+        icon: true,
       },
     },
     {
@@ -148,5 +134,8 @@ module.exports = {
         },
       },
     },
+    'gatsby-plugin-react-helmet',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
   ],
 };

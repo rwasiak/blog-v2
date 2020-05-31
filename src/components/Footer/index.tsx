@@ -4,9 +4,9 @@ import { Flex } from '../Grid';
 import Link from '../Link';
 import Typography from '../Typography';
 import useSiteMetaData from '../../hooks/useSiteMetadata';
-import Github from '../../images/footer/github.svg';
-import LinkedIn from '../../images/footer/linkedin.svg';
-import Twitter from '../../images/footer/twitter.svg';
+import { ReactComponent as Github } from '../../images/footer/github.svg';
+import { ReactComponent as LinkedIn } from '../../images/footer/linkedin.svg';
+import { ReactComponent as Twitter } from '../../images/footer/twitter.svg';
 
 const FooterContainer = styled(Flex).attrs(() => ({
   as: 'footer',
@@ -51,13 +51,25 @@ const Footer: React.FC = () => {
   return (
     <FooterContainer alignItems="center" flexDirection="column">
       <Flex width={110} justifyContent="space-between" mb={2}>
-        <a href={`//twitter.com/${twitterUsername}`}>
+        <a
+          aria-label="twitter link"
+          href={`//twitter.com/${twitterUsername}`}
+          data-testid="footer__twitter"
+        >
           <TwitterIcon fill={theme.colors.secondary} width={28} height={28} />
         </a>
-        <a href={`//www.linkedin.com/in/${linkedinUsername}/`}>
+        <a
+          aria-label="linkedin link"
+          href={`//www.linkedin.com/in/${linkedinUsername}/`}
+          data-testid="footer__linkedin"
+        >
           <LinkedInIcon fill={theme.colors.secondary} width={28} height={28} />
         </a>
-        <a href={`//github.com/${githubUsername}`}>
+        <a
+          aria-label="github link"
+          href={`//github.com/${githubUsername}`}
+          data-testid="footer__github"
+        >
           <GithubIcon width={28} height={28} />
         </a>
       </Flex>
