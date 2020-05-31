@@ -1,7 +1,6 @@
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
-import theme from 'prism-react-renderer/themes/nightOwl';
+import theme from 'prism-react-renderer/themes/oceanicNext';
 import React from 'react';
-import styled from 'styled-components';
 import {
   LiveEditor,
   LiveError,
@@ -9,7 +8,8 @@ import {
   LiveProvider,
   withLive,
 } from 'react-live';
-import copyToClipboard from '../../utils/copyToClipboard';
+import styled, { space, borderRadius } from '../../design-system';
+import { Box } from '../Grid';
 
 interface CodeProps {
   codeString: string;
@@ -17,13 +17,20 @@ interface CodeProps {
   'react-live'?: any;
 }
 
-export const Pre = styled.pre`
+const PreWrapper = styled.div`
   position: relative;
+`;
+
+const Pre = styled.pre.attrs(() => ({
+  my: 6,
+  px: 4,
+  py: 6,
+  borderRadius: [3, null, 5],
+}))`
+  ${space}
+  ${borderRadius}
   text-align: left;
-  margin: 1em 0;
-  padding: 0.5em;
   overflow-x: auto;
-  border-radius: 3px;
 
   & .token-line {
     line-height: 1.3em;
@@ -33,38 +40,45 @@ export const Pre = styled.pre`
   font-family: 'Courier New', Courier, monospace;
 `;
 
-export const LineNo = styled.span`
+const LineNo = styled.span`
   display: inline-block;
   width: 2em;
   user-select: none;
 `;
 
-const CopyCode = styled.button`
-  position: absolute;
-  right: 0.15rem;
-  top: 0.15rem;
-  border: 0;
-  border-radius: 3px;
-  margin: 0.25em;
-  opacity: 0.3;
-
-  &:hover {
-    cursor: pointer;
-    opacity: 1;
+const StyledLive = styled(Box)`
+  && div,
+  && pre {
+    font-family: 'Courier New', Courier, monospace;
   }
 `;
 
 const Code: React.FC<CodeProps> = ({ codeString, language, ...props }) => {
-  const handleCopyClick = () => copyToClipboard(codeString);
   const { 'react-live': reactLive } = props;
+  const reactLiveContainerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (reactLiveContainerRef.current) {
+      const textarea = reactLiveContainerRef.current.querySelector('textarea');
+
+      if (textarea) {
+        textarea.setAttribute('aria-hidden', 'true');
+      }
+    }
+  }, [reactLive]);
 
   if (reactLive) {
     return (
       <LiveProvider code={codeString} noInline theme={theme}>
-        <CopyCode onClick={handleCopyClick}>Kopiuj</CopyCode>
-        <LiveEditor />
-        <LiveError />
-        <LivePreview />
+        <StyledLive
+          my={6}
+          data-testid="react-live-component"
+          ref={reactLiveContainerRef}
+        >
+          <LiveEditor />
+          <LiveError />
+          <LivePreview />
+        </StyledLive>
       </LiveProvider>
     );
   }
@@ -76,20 +90,22 @@ const Code: React.FC<CodeProps> = ({ codeString, language, ...props }) => {
       language={language}
       theme={theme}
     >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <Pre className={className} style={style}>
-          <CopyCode onClick={handleCopyClick}>Kopiuj</CopyCode>
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
-              <LineNo>{i + 1}</LineNo>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </Pre>
+      {({ style, tokens, getLineProps, getTokenProps }) => (
+        <PreWrapper>
+          <Pre style={style} data-testid="highlight-component">
+            {tokens.map((line, i) => (
+              <div {...getLineProps({ line, key: i })}>
+                <LineNo>{i + 1}</LineNo>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </Pre>
+        </PreWrapper>
       )}
     </Highlight>
   );
 };
 export default withLive(Code);
+export { defaultProps };
