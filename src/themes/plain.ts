@@ -44,11 +44,11 @@ const extendedTheme: ExtendedTheme = {
     headingL: {
       fontFamily: basicTheme.fonts.secondary,
       fontWeight: 600,
-      fontSize: [26, 28, 28, 30, 32],
+      fontSize: [28, 30, 30, 32, 34],
       color: basicTheme.colors.black,
       textTransform: 'none',
       fontStyle: 'normal',
-      lineHeight: ['30px', '32px', '32px', '34px', '36px'],
+      lineHeight: ['32px', '34px', '34px', '36px', '38px'],
     },
     textS: {
       fontFamily: basicTheme.fonts.primary,
