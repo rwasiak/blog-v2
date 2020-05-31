@@ -8,10 +8,18 @@ module.exports = {
     'prettier/@typescript-eslint',
     'plugin:@typescript-eslint/recommended',
   ],
+  env: {
+    jest: true,
+  },
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'graphql'],
+  plugins: ['@typescript-eslint', 'graphql', 'jest'],
   rules: {
-    'jsx-a11y/anchor-is-valid': 0,
+    'jsx-a11y/anchor-is-valid': [
+      'error',
+      {
+        aspects: ['invalidHref', 'preferButton'],
+      },
+    ],
     'react/prop-types': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }],
@@ -25,6 +33,13 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'jest/lowercase-name': [
+      'error',
+      {
+        ignore: ['describe', 'test'],
+      },
+    ],
+    'jest/consistent-test-it': ['error'],
     'graphql/template-strings': [
       'error',
       {
