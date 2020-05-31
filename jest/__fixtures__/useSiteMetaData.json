@@ -1,0 +1,16 @@
+{
+  "site": {
+    "siteMetadata": {
+      "title": "Remigiusz Wasiak Blog",
+      "description": "Znajdziesz tu informacje o JAMstack, React, TypeScript, Next.js i GraphQL.",
+      "image": "/",
+      "siteUrl": "https://www.remigiuszwasiak.pl",
+      "siteLanguage": "pl-PL",
+      "siteLocale": "pl_PL",
+      "twitterUsername": "@er_wasiak",
+      "githubUsername": "rwasiak",
+      "linkedinUsername": "remigiuszwasiak",
+      "authorName": "Remigiusz Wasiak"
+    }
+  }
+}
