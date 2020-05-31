@@ -10,7 +10,6 @@ import styled, {
 } from '../../design-system';
 import useSiteMetadata from '../../hooks/useSiteMetadata';
 import { Flex, Box } from '../Grid';
-
 import Header from '../Header';
 import Footer from '../Footer';
 
@@ -60,7 +59,7 @@ const Layout: React.FC<LayoutProps> = ({ children, type }) => {
       </Helmet>
       <Flex flexDirection="column" height="100vh">
         <BackgroundDecoration py={8}>
-          <Container type={type}>
+          <Container data-testid="layout-container" type={type}>
             <Header siteTitle={siteMetadata && siteMetadata.title} />
           </Container>
         </BackgroundDecoration>
@@ -68,7 +67,7 @@ const Layout: React.FC<LayoutProps> = ({ children, type }) => {
           <Container type={type}>{children}</Container>
         </Main>
         <BackgroundDecoration py={4}>
-          <Container type={type}>
+          <Container type={type} data-testid="layout-container">
             <Footer />
           </Container>
         </BackgroundDecoration>
