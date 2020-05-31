@@ -4,3 +4,5 @@ gatsby-node.js
 gatsby-ssr.js
 gen/graphql-types.ts
 globalTypes.ts
+jest.config.js
+/jest
