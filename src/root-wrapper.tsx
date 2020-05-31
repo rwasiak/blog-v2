@@ -4,7 +4,7 @@ import { DesignSystemProvider, Normalize } from './design-system';
 import components from './design-system/MDXhtmlTagsComponents';
 import PlainTheme from './themes/plain';
 
-const WrapRootElement = ({ element }: any) => (
+const WrapRootElement = ({ element }: { element: React.ReactNode }) => (
   <DesignSystemProvider theme={PlainTheme}>
     <MDXProvider components={components}>
       <Normalize />

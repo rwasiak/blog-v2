@@ -73,6 +73,25 @@ exports.createSchemaCustomization = ({ actions }) => {
       linkedinUsername: String!
       authorName: String!
     }
+
+    type BlogPostFields {
+      slug: String!
+    }
+
+    type BlogPostFrontmatter {
+      title: String!
+    }
+
+    type BlogPost {
+      fields: BlogPostFields!
+      frontmatter: BlogPostFrontmatter!
+    }
+
+    type BlogPostPageContext {
+      slug: String!
+      previous: BlogPost
+      next: BlogPost
+    }
   `;
   createTypes(typeDefs);
 };
