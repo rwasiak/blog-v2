@@ -16,13 +16,14 @@ const Image = () => {
     }
   `);
 
+  /* istanbul ignore next */
   if (!data.placeholderImage?.childImageSharp?.fluid) {
     throw new Error('there is no file match face.jpeg');
   }
 
   return (
     <Img
-      fluid={data?.placeholderImage?.childImageSharp?.fluid}
+      fluid={data.placeholderImage?.childImageSharp?.fluid}
       alt="autor bloga Remigiusz Wasiak"
     />
   );
