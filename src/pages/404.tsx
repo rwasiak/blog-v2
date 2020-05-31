@@ -1,14 +1,36 @@
 import React from 'react';
+import SEO from 'react-seo-component';
 
 import Layout from '../components/Layout';
-import SEO from '../components/SEO';
+import Typography from '../components/Typography';
+import useSiteMetadata from '../hooks/useSiteMetadata';
 
-const NotFoundPage = () => (
-  <Layout type="mainContent">
-    <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </Layout>
-);
+const NotFoundPage = () => {
+  const {
+    description,
+    image,
+    siteUrl,
+    siteLanguage,
+    siteLocale,
+    twitterUsername,
+  } = useSiteMetadata();
+  return (
+    <Layout type="mainContent">
+      <SEO
+        title="404: not found"
+        description={description}
+        image={`${siteUrl}${image}`}
+        pathname={siteUrl}
+        siteLanguage={siteLanguage}
+        siteLocale={siteLocale}
+        twitterUsername={twitterUsername}
+        titleTemplate=""
+      />
+      <Typography typography="headingL" as="h2">
+        Taka strona nie istnieje!
+      </Typography>
+    </Layout>
+  );
+};
 
 export default NotFoundPage;
