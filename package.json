@@ -87,7 +87,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "jest",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "npm run lint && jest --coverage --silent",
     "lint": "tsc --noEmit && eslint '*/**/*.{ts,tsx}' --quiet --fix && stylelint './src/**/*.{tsx,ts}'"
   },
   "husky": {
