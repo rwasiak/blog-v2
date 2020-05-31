@@ -1,16 +1,29 @@
 import * as React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import SEO from 'react-seo-component';
 import Layout from '../components/Layout';
-import { PostsBySlugQuery as BlogPostData } from '../../gen/graphql-types';
+import { Box, Flex } from '../components/Grid';
+import Typography from '../components/Typography';
+import { InternalLink } from '../components/Link';
+import styled from '../design-system';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import {
+  PostsBySlugQuery as BlogPostData,
+  BlogPostPageContext,
+} from '../../gen/graphql-types';
 
 export interface BlogPost {
   data: BlogPostData;
-  pageContext: {
-    previous: any;
-    next: any;
-  };
+  pageContext: BlogPostPageContext;
 }
+
+const Navigation = styled(Flex)`
+  list-style-type: none;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+`;
 
 const BlogPostPage: React.FC<BlogPost> = ({ data, pageContext }) => {
   if (!data.mdx?.frontmatter) {
@@ -20,21 +33,62 @@ const BlogPostPage: React.FC<BlogPost> = ({ data, pageContext }) => {
   const { previous, next } = pageContext;
 
   const { frontmatter, body } = data.mdx;
+  const {
+    image,
+    siteUrl,
+    siteLanguage,
+    siteLocale,
+    twitterUsername,
+  } = useSiteMetadata();
   return (
     <Layout type="postContent">
-      <h1>{frontmatter.title}</h1>
-      <p>{frontmatter.date}</p>
-      <MDXRenderer>{body}</MDXRenderer>
-      {previous && (
-        <Link to={previous?.fields.slug} rel="prev">
-          Previous post
-        </Link>
-      )}
-      {next && (
-        <Link to={next?.fields.slug} rel="next">
-          Next post
-        </Link>
-      )}
+      <SEO
+        title={frontmatter.title}
+        description={frontmatter.teaser || ''}
+        image={`${siteUrl}${image}`}
+        pathname={siteUrl}
+        siteLanguage={siteLanguage}
+        siteLocale={siteLocale}
+        twitterUsername={twitterUsername}
+        titleTemplate="Remigiusz Wasiak"
+      />
+      <Box mb={7}>
+        <Typography as="h2" typography="headingL">
+          {frontmatter.title}
+        </Typography>
+      </Box>
+      <Typography typography="text">
+        <MDXRenderer>{body}</MDXRenderer>
+      </Typography>
+      <Navigation
+        as="ul"
+        flexWrap="wrap"
+        justifyContent="space-between"
+        py={[6, null, 7]}
+      >
+        <li>
+          {previous && (
+            <InternalLink
+              to={previous.fields.slug}
+              rel="prev"
+              typography="textStrong"
+            >
+              Poprzedni post
+            </InternalLink>
+          )}
+        </li>
+        <li>
+          {next && (
+            <InternalLink
+              to={next.fields.slug}
+              rel="next"
+              typography="textStrong"
+            >
+              Następny post
+            </InternalLink>
+          )}
+        </li>
+      </Navigation>
     </Layout>
   );
 };
@@ -47,7 +101,8 @@ export const blogPostQuery = graphql`
       body
       frontmatter {
         title
-        date(formatString: "DD-MM-YYYY")
+        teaser
+        coverTitle
       }
     }
   }
