@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { ThemeContext } from '../../design-system';
+import styled from '../../design-system';
 import { Flex } from '../Grid';
 import Link from '../Link';
 import Typography from '../Typography';
@@ -12,26 +12,12 @@ const FooterContainer = styled(Flex).attrs(() => ({
   as: 'footer',
 }))``;
 
-const GithubIcon = styled(Github)`
-  fill: ${({ theme }) => theme.colors.secondary};
-
-  &:hover {
-    fill: ${({ theme }) => theme.colors.highlightInteractive};
+const IconWrapper = styled.a`
+  && svg {
+    fill: ${({ theme }) => theme.colors.secondary};
   }
-`;
 
-const LinkedInIcon = styled(LinkedIn)`
-  fill: ${({ theme }) => theme.colors.secondary};
-
-  &:hover {
-    fill: ${({ theme }) => theme.colors.highlightInteractive};
-  }
-`;
-
-const TwitterIcon = styled(Twitter)`
-  fill: ${({ theme }) => theme.colors.secondary};
-
-  &:hover {
+  &:hover svg {
     fill: ${({ theme }) => theme.colors.highlightInteractive};
   }
 `;
@@ -46,32 +32,31 @@ const Footer: React.FC = () => {
     githubUsername,
     linkedinUsername,
   } = useSiteMetaData();
-  const theme = React.useContext(ThemeContext);
 
   return (
     <FooterContainer alignItems="center" flexDirection="column">
       <Flex width={110} justifyContent="space-between" mb={2}>
-        <a
+        <IconWrapper
           aria-label="twitter link"
           href={`//twitter.com/${twitterUsername}`}
           data-testid="footer__twitter"
         >
-          <TwitterIcon fill={theme.colors.secondary} width={28} height={28} />
-        </a>
-        <a
+          <Twitter width={28} height={28} />
+        </IconWrapper>
+        <IconWrapper
           aria-label="linkedin link"
           href={`//www.linkedin.com/in/${linkedinUsername}/`}
           data-testid="footer__linkedin"
-        >
-          <LinkedInIcon fill={theme.colors.secondary} width={28} height={28} />
-        </a>
-        <a
+        > 
+          <LinkedIn width={28} height={28} />
+        </IconWrapper>
+        <IconWrapper
           aria-label="github link"
           href={`//github.com/${githubUsername}`}
           data-testid="footer__github"
-        >
-          <GithubIcon width={28} height={28} />
-        </a>
+        > 
+          <Github width={28} height={28} />
+        </IconWrapper>
       </Flex>
       <Credits>
         <Typography as="span" color="white" typography="textS" mr={2}>
