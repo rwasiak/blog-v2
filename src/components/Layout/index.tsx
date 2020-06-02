@@ -14,9 +14,9 @@ import Header from '../Header';
 import Footer from '../Footer';
 
 export type LayoutType = keyof Theme['maxWidths'];
-
 export interface LayoutProps {
   type: LayoutType;
+  children?: React.ReactNode;
 }
 
 const BackgroundDecoration = styled.section.attrs(({ theme }) => ({
@@ -76,4 +76,4 @@ const Layout: React.FC<LayoutProps> = ({ children, type }) => {
   );
 };
 
-export default Layout;
+export default React.memo(Layout);
