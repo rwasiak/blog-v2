@@ -28,7 +28,7 @@ If you see any improvements which can be done in this code, I encourage you to m
     - stylelint
     - TypeScript checks
 11. [Jest](https://jestjs.io/) - JavaScript Testing Framework with rich configuration:
-    - [React Testing Library](https://github.com/testing-library/react-testing-library) inside
+    - [React Testing Library](https://github.com/testing-library/react-testing-library)
     - [Axe](https://github.com/nickcolley/jest-axe) - custom Jest matcher for testing accessibility
 12. [CI pipline](https://github.com/rwasiak/blog-v2/actions) with >80% tests coverage connected with [Code Climate](https://codeclimate.com/github/rwasiak/blog-v2) (automated code review and quality analytics)
 
@@ -37,7 +37,7 @@ If you see any improvements which can be done in this code, I encourage you to m
 1. clone this project
 2. npm install or yarn install
 3. npx gatsby develop
-4. site is available on localhost:4000/
+4. site is available on localhost:8000
 
 ## 🏛 Licenses
 
