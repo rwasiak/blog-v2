@@ -60,7 +60,7 @@ export const homePageQuery = graphql`
           }
           frontmatter {
             title
-            date(locale: "pl", formatString: "LL")
+            date(locale: "en", formatString: "LL")
             cover {
               childImageSharp {
                 fluid(maxWidth: 800) {

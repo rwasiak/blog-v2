@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
             {siteTitle}
           </Typography>
           <Typography typography="text" color="secondary">
-            JAMstack, React, TypeScript, Next.js, GraphQL
+            Jamstack, React, TypeScript, Next.js, GraphQL
           </Typography>
         </Flex>
       </Flex>
