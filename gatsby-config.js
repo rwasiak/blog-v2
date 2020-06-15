@@ -1,6 +1,6 @@
 const {
   NODE_ENV,
-  URL: NETLIFY_SITE_URL = 'https://www.remigiuszwasiak.pl',
+  URL: NETLIFY_SITE_URL = 'https://www.rwasiak.com',
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
   CONTEXT: NETLIFY_ENV = NODE_ENV,
 } = process.env;
@@ -11,11 +11,11 @@ module.exports = {
   siteMetadata: {
     title: 'Remigiusz Wasiak Blog',
     description:
-      'Znajdziesz tu informacje o JAMstack, React, TypeScript, Next.js i GraphQL.',
+      'You will find here knowledge about Jamstack, React, TypeScript, Next.js, GraphQL and JavaScript in a broad sense.',
     image: '/',
     siteUrl,
-    siteLanguage: 'pl-PL',
-    siteLocale: 'pl_PL',
+    siteLanguage: 'en',
+    siteLocale: 'en_US',
     twitterUsername: '@er_wasiak',
     githubUsername: 'rwasiak',
     linkedinUsername: 'remigiuszwasiak',
@@ -119,7 +119,7 @@ module.exports = {
           production: {
             host: 'https://www.rwasiak.com',
             sitemap: 'https://www.rwasiak.com/sitemap.xml',
-            policy: [{ userAgent: '*', disallow: '/polityka-prywatnosci' }],
+            policy: [{ userAgent: '*', disallow: '/privacy-policy' }],
           },
         },
         'branch-deploy': {

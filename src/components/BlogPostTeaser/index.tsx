@@ -59,7 +59,7 @@ const BlogPostTeaser: React.FC<BlogPostTeaserProps> = ({ blogPostData }) => {
           )}
         </ImageContainer>
         <Box pl={[0, null, 8, 9]} my={[5, 6, 0]}>
-          <Typography typography="heading" mb={5}>
+          <Typography as="h2" typography="headingL" mb={5} mt={0}>
             {frontmatter.title || ''}
           </Typography>
           <Typography typography="text" mb={[5, null, 6]}>
