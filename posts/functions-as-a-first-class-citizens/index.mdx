@@ -1,0 +1,48 @@
+---
+title: Functions as First-Class Citizens 
+date: 2020-05-09
+published: true
+cover: ../images/FunctionalProgrammingCover.jpg
+coverTitle: Functional programming quick notes
+teaser: In this quick note I will explain what means that functions in JavaScript are First-Class Citizens or First-Class Objects.
+---
+### First-Class Citizen and First-Class Object mean the same.
+Both terms concern some functions features in JavaScript. They can be:
+* stored in variables
+* passed to other functions
+* returned from other functions
+
+In one sentence:
+> Functions can be treated just like any other variable.
+
+#### Example of storing functions in variables.
+```js
+const variableWithStoredFunction = () => "I'm returned from function";
+variableWithStoredFunction(); // returns "I'm returned from function"
+```
+You can also store functions in object properties:
+
+```js
+const calculator = {
+	double: (number) => number * 2,
+	triple: (number) => number * 3,
+};
+
+calculator.double(4); // returns 8
+calculator.triple(5); // returns 15
+```
+
+#### Example of passing functions to other functions.
+```js
+const double = (number) => number * 2;
+const logResult = (anyFunction) => console.log(anyFunction(5));
+logResult(double); // 10
+```
+
+#### Example of returning functions from other functions.
+```js
+const square = (number) => number ** 2;
+const toSquare = () => square;
+const countSquare = toSquare();
+countSuqre(8); // returns 64
+```

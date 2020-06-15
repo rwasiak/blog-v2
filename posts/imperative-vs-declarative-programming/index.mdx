@@ -1,0 +1,47 @@
+---
+title: Imperative vs declarative programming
+date: 2020-05-17
+published: true
+cover: ../images/FunctionalProgrammingCover.jpg
+coverTitle: Functional programming quick notes
+teaser: In this quick note I will explain what is the difference between imperative and declarative programming. At the end I will list main advantages of declarative programming.
+---
+## Imperative and declarative programming are two different approaches to write code. 
+
+Getting straight to the point. 
+ > Imperative programming is like *HOW* you do something, when declarative programming is *WHAT* you do something.
+
+### Imperative programming
+Imperative programming is about defining a sequence of clear instructions for a computer to perform. This is one of two fundamental programming paradigms in computer science.
+Let's see an example.
+```js
+const numbers = [1, 2, 3, 4];
+
+const triple = (numArr) => {
+	let tripleNumbers = [];
+	
+	for(i = 0; i < numArr.length; i += 1) {
+		tripleNumbers.push(numArr[i] * 3);
+	}
+	
+	return tripleNumbers;
+}
+
+triple(numbers); // returns [3, 6, 9, 12]
+```
+
+### Declarative programming
+Declarative programming is about defining what you want to achive, without clear instructions how to do it. This is the second of two fundamental programming paradigms in computer science.
+Look at this very simple example and compare it do example above.
+```js
+const numbers = [1, 2, 3, 4];
+
+const triple = (number) => number * 3;
+numbers.map(triple); // returns [3, 6, 9, 12]
+```
+
+### Advantages of declarative programming
+* code can be context-independent
+* no side effects
+* readability
+* more scalable
