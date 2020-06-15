@@ -26,8 +26,8 @@ const NotFoundPage = () => {
         twitterUsername={twitterUsername}
         titleTemplate=""
       />
-      <Typography typography="headingL" as="h2">
-        Taka strona nie istnieje!
+      <Typography typography="headingXL" as="h2">
+        404 - Page not found
       </Typography>
     </Layout>
   );
