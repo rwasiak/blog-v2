@@ -89,7 +89,7 @@ const components: Components = {
     );
   },
   blockquote: ({ children }) => (
-    <Blockquote as="blockquote" typography="quote">
+    <Blockquote as="blockquote" typography="quote" py={3}>
       {children}
     </Blockquote>
   ),
