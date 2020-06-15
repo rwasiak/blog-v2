@@ -53,10 +53,14 @@ const BlogPostPage: React.FC<BlogPost> = ({ data, pageContext }) => {
         titleTemplate="Remigiusz Wasiak"
       />
       <Box mb={7}>
-        <Typography as="h2" typography="headingL">
+        <Typography as="h2" typography="headingXL">
           {frontmatter.title}
         </Typography>
+        <Typography as="p" typography="text">
+          {frontmatter.teaser}
+        </Typography>
       </Box>
+      <hr />
       <Typography typography="text">
         <MDXRenderer>{body}</MDXRenderer>
       </Typography>
@@ -73,7 +77,7 @@ const BlogPostPage: React.FC<BlogPost> = ({ data, pageContext }) => {
               rel="prev"
               typography="textStrong"
             >
-              Poprzedni post
+              Previous post
             </InternalLink>
           )}
         </li>
@@ -84,7 +88,7 @@ const BlogPostPage: React.FC<BlogPost> = ({ data, pageContext }) => {
               rel="next"
               typography="textStrong"
             >
-              Następny post
+              Next post
             </InternalLink>
           )}
         </li>
