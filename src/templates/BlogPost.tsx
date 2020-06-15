@@ -34,23 +34,31 @@ const BlogPostPage: React.FC<BlogPost> = ({ data, pageContext }) => {
 
   const { frontmatter, body } = data.mdx;
   const {
-    image,
     siteUrl,
     siteLanguage,
     siteLocale,
     twitterUsername,
+    authorName,
   } = useSiteMetadata();
+
+  const publicationDate = new Date(frontmatter.date).toISOString();
+  const imagePublicURL = frontmatter.cover && frontmatter.cover.publicURL;
+
   return (
     <Layout type="postContent">
       <SEO
+        article
+        author={authorName}
         title={frontmatter.title}
         description={frontmatter.teaser || ''}
-        image={`${siteUrl}${image}`}
+        image={`${siteUrl}${imagePublicURL}`}
         pathname={siteUrl}
         siteLanguage={siteLanguage}
         siteLocale={siteLocale}
         twitterUsername={twitterUsername}
         titleTemplate="Remigiusz Wasiak"
+        datePublished={publicationDate}
+        dateModified={publicationDate}
       />
       <Box mb={7}>
         <Typography as="h2" typography="headingXL">
@@ -105,8 +113,12 @@ export const blogPostQuery = graphql`
       body
       frontmatter {
         title
+        date(locale: "en", formatString: "LL")
         teaser
         coverTitle
+        cover {
+          publicURL
+        }
       }
     }
   }

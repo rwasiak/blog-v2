@@ -7,6 +7,8 @@ import Layout from '../components/Layout';
 import { BlogPostsQuery } from '../../gen/graphql-types';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 
+const BLOG_PUBLISHED_DATE = new Date('09 May 2011 17:24 UTC').toISOString();
+
 export interface HomePage {
   data: BlogPostsQuery;
 }
@@ -14,6 +16,7 @@ export interface HomePage {
 const IndexPage: React.FC<HomePage> = ({ data }) => {
   const { edges: posts } = data.allMdx;
   const {
+    authorName,
     description,
     title,
     image,
@@ -26,6 +29,7 @@ const IndexPage: React.FC<HomePage> = ({ data }) => {
   return (
     <Layout type="mainContent">
       <SEO
+        author={authorName}
         title={title}
         description={description}
         image={`${siteUrl}${image}`}
@@ -34,6 +38,7 @@ const IndexPage: React.FC<HomePage> = ({ data }) => {
         siteLocale={siteLocale}
         twitterUsername={twitterUsername}
         titleTemplate="JAMstack, React, TypeScript, Next.js, GraphQL"
+        datePublished={BLOG_PUBLISHED_DATE}
       />
       <Box pt={[4, 7, 7, 9]}>
         {posts.map(post => (
