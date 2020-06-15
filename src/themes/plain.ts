@@ -50,6 +50,15 @@ const extendedTheme: ExtendedTheme = {
       fontStyle: 'normal',
       lineHeight: ['32px', '34px', '34px', '36px', '38px'],
     },
+    headingXL: {
+      fontFamily: basicTheme.fonts.secondary,
+      fontWeight: 600,
+      fontSize: [32, 36, 36, 38, 40],
+      color: basicTheme.colors.black,
+      textTransform: 'none',
+      fontStyle: 'normal',
+      lineHeight: ['34px', '38px', '38px', '40px', '42px'],
+    },
     textS: {
       fontFamily: basicTheme.fonts.primary,
       fontWeight: 400,
