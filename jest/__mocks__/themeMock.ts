@@ -50,6 +50,15 @@ const extendedTheme: ExtendedTheme = {
       fontStyle: 'headingL fontStyle',
       lineHeight: 'headingL lineHeight',
     },
+    headingXL: {
+      fontFamily: 'headingXL fontFamily',
+      fontWeight: 0,
+      fontSize: 0,
+      color: 'headingXL color',
+      textTransform: 'headingXL textTransform',
+      fontStyle: 'headingXL fontStyle',
+      lineHeight: 'headingXL lineHeight',
+    },
     textS: {
       fontFamily: 'textS fontFamily',
       fontWeight: 0,

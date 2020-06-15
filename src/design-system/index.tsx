@@ -30,6 +30,7 @@ export type TextStyleTypes =
   | 'headingS'
   | 'heading'
   | 'headingL'
+  | 'headingXL'
   | 'textS'
   | 'text'
   | 'textL'
