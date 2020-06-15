@@ -121,16 +121,16 @@ module.exports = {
             sitemap: 'https://www.rwasiak.com/sitemap.xml',
             policy: [{ userAgent: '*', disallow: '/privacy-policy' }],
           },
-        },
-        'branch-deploy': {
-          host: null,
-          sitemap: null,
-          policy: [{ userAgent: '*', disallow: ['/'] }],
-        },
-        'deploy-preview': {
-          host: null,
-          sitemap: null,
-          policy: [{ userAgent: '*', disallow: ['/'] }],
+          'branch-deploy': {
+            host: null,
+            sitemap: null,
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+          },
+          'deploy-preview': {
+            host: null,
+            sitemap: null,
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+          },
         },
       },
     },
