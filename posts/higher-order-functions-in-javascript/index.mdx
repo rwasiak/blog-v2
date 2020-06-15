@@ -1,0 +1,54 @@
+---
+title: Higher-Order Functions in JavaScript
+date: 2020-05-12
+published: true
+cover: ../images/FunctionalProgrammingCover.jpg
+coverTitle: Functional programming quick notes
+teaser: In this quick note I will explain what is the meaning of term Higher-Order Functions. You will also see a few common examples.
+---
+
+## The term of Higher-Order Function
+Higher-Order Function is a function that operates on other functions. It can:
+* taking functions as arguments
+* returning functions
+
+It's as simple as that. However, this feature is so powerful.
+
+### Method map as Higher-Order Function.
+You may know, that arrays have a method called map - `Array.proptotype.map`
+This is a method that creates a new array filled with results of a function called on each element in the calling array. It will be easier to show it on an example.
+```js
+const numbers = [1, 2, 3, 4];
+const squares = numbers.map(number => number ** 2); // returns [1, 4, 9, 16]
+```
+As you can see, we passed a function to the map method which returns squares of each element of the numbers array. We can say that the map method is a Higher Order Function because it takes as an argument other function.
+
+### Method sort as Higher-Order Function.
+Sort is another method that can be called on arrays. This method takes as an argument function that defines the sort order.
+```js
+const unsortedNumbers = [5, 2, 6, 1, 4, 7];
+const compareAscending = (a, b) => a - b; // function that defines ascending order
+const compareDescending = (b, a) => b - a; // function that defines descending order
+
+const sortedAscending = unsortedNumbers.sort(compareAscending); // returns [1, 2, 4, 5, 6, 7]
+const sortedDescending = unsortedNumbers.sort(compareDescending); // returns [7, 6, 5, 4, 2, 1]
+```
+
+### Custom Higher-Order Function
+Let's create a Higher-Order Function on our own.
+```js
+const getExtremum = (extremumFunc) => (...args) => extremumFunc(...args);
+const smallestNumber = getExtremum(Math.min)(2, 4, 10, -1); // returns -1
+const largestNumber = getExtremum(Math.max)(2, 4, 10, -1); // return 10
+```
+We've created a function that takes a function as an argument (Math method), then returns this function with another arguments (numbers). If you are astonished by ()() notation, we could write it more imperative, see example below.
+
+```js
+const getExtremum = (extremumFunc) => (...args) => extremumFunc(...args);
+
+const getSmallestNumber = getExtremum(Math.min); 
+const smallestNumber = getSmallestNumber(2, 4, 10, -1); // returns -1
+
+const getLargestNumber = getExtremum(Math.max);
+const largestNumber = getLargestNumber(2, 4, 10, -1); // return 10
+```
