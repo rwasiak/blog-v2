@@ -1,3 +1,3 @@
-import WrapRootElement from './src/root-wrapper';
+import WrapPageElement from './src/page-wrapper';
 
-export const wrapRootElement = WrapRootElement;
+export const wrapPageElement = WrapPageElement;

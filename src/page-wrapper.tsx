@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
   whyDidYouRender(React);
 }
 
-const WrapRootElement = ({ element }: { element: React.ReactNode }) => (
+const WrapPageElement = ({ element }: { element: React.ReactNode }) => (
   <DesignSystemProvider theme={PlainTheme}>
     <MDXProvider components={components}>
       <Normalize />
@@ -19,4 +19,4 @@ const WrapRootElement = ({ element }: { element: React.ReactNode }) => (
   </DesignSystemProvider>
 );
 
-export default WrapRootElement;
+export default WrapPageElement;
