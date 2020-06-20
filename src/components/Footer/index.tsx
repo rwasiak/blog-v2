@@ -37,25 +37,25 @@ const Footer: React.FC = () => {
     <FooterContainer alignItems="center" flexDirection="column">
       <Flex width={110} justifyContent="space-between" mb={2}>
         <IconWrapper
-          aria-label="twitter link"
-          href={`//twitter.com/${twitterUsername}`}
-          data-testid="footer__twitter"
+          aria-label="github link"
+          href={`//github.com/${githubUsername}`}
+          data-testid="footer__github"
         >
-          <Twitter width={28} height={28} />
+          <Github width={28} height={28} />
         </IconWrapper>
         <IconWrapper
           aria-label="linkedin link"
           href={`//www.linkedin.com/in/${linkedinUsername}/`}
           data-testid="footer__linkedin"
-        > 
+        >
           <LinkedIn width={28} height={28} />
         </IconWrapper>
         <IconWrapper
-          aria-label="github link"
-          href={`//github.com/${githubUsername}`}
-          data-testid="footer__github"
-        > 
-          <Github width={28} height={28} />
+          aria-label="twitter link"
+          href={`//twitter.com/${twitterUsername}`}
+          data-testid="footer__twitter"
+        >
+          <Twitter width={28} height={28} />
         </IconWrapper>
       </Flex>
       <Credits>
