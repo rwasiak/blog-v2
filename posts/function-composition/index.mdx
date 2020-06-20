@@ -1,0 +1,39 @@
+---
+title: Function Composition in JavaScript
+date: 2020-06-15
+published: true
+cover: ../images/FunctionalProgrammingCover.jpg
+coverTitle: Functional programming quick notes
+teaser: In this quick note I will explain what is a Function Composition in JavaScript.
+---
+## The term of Function Composition
+As always, let's get to the point.
+> Function Composition is the process of combining several functions to produce a new function.
+
+### Simple example
+Look at the example below.
+```js
+const squareAndDouble = (x) => (x ** 2) * 2;
+squareAndDouble(3); // returns 18
+
+// We want to split these operations into 2 pure functions
+const square = (x) => x ** 2;
+const double = (x) => x * 2;
+
+// Now we can compose these 2 functions to get the same result as squareAndDouble returns
+double(square(3)); // returns 18
+```
+
+### Let's create a little bit more complex composition.
+I would like to create a function that compose all the functions passed to them. 
+```js
+// This is very common example of function composition
+const pipe = (...fns) => value => fns.reduce((acc, fn) => fn(acc), value);
+
+const square = (x) => x ** 2;
+const double = (x) => x * 2;
+const subtractTwo = (x) => x - 2;
+
+pipe(square, double, subtractTwo, Math.sqrt)(3); // returns 4
+// above sequence is: Math.sqrt(((3 ** 2) * 2) - 2)
+```

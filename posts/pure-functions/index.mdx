@@ -1,0 +1,69 @@
+---
+title: Pure Functions in JavaScript
+date: 2020-06-02
+published: true
+cover: ../images/FunctionalProgrammingCover.jpg
+coverTitle: Functional programming quick notes
+teaser: In this quick note I will explain what are Pure Functions in JavaScript and why they are worth to pay them attention.
+---
+## Pure Functions are just functions that meet two specific requirements.
+To cut a long story short. Pure Functions must fulfill the following conditions:
+* they always return the same result for the same arguments passed in (idempotence)
+* they do not produce observable side effects
+
+### Examples of side effects
+* mutating data
+* logging to the console
+* calling other functions which produce side effects
+* DOM manipulation
+* making HTTP requests
+
+### Examples of non-pure functions
+* Math.random()
+* Date.now()
+
+Example of custom non-pure function
+```js
+const movies = [
+	{
+		title: 'Forrest Gump',
+		length: 142 // minutes
+	},
+	{
+		title: 'The Shawshank Redemption',
+		length: 142
+	},
+	{
+		title: 'The Godfather',
+		length: 175
+	}
+];
+// 1. let's create a function that convert minutes to hours 
+const minutesToHours = (minutes) => Number((minutes / 60).toFixed(2));
+
+// 2. let's create a function that convert movies length from minutes to hours
+const convertMoviesLength = (movies) => {
+	movies.forEach(movie => movie.length = minutesToHours(movie.length));
+	return movies;
+}
+
+convertMoviesLength(movies); // modify movies lengths in order: 2.37, 2.37 and 2.92
+```
+Function `convertMoviesLength` is non-pure because it modifies objects which are declared outside of them. Let's create a pure version of this function.
+```js
+const pureConvertMoviesLength = (movies) => {
+	return movies.map(movie => ({...movie, length: minutesToHours(movie.length)}));
+}
+``` 
+Now, function instead of modifying the external objects returns a new array and creates a new object for each iteration.
+
+### Why should you pay more attention to Pure Functions?
+Because they are:
+* easy to test
+* easy to debug
+* memoizable - you can memoize returned values
+* easy to combine
+* easy to understand
+
+### Can I use Pure Functions everywhere?
+No, you probably can't. There are many cases, where functions have to modify external values, make HTTP requests or do something else which is qualified as a side effect. For example, there is no possibility to write pure function responsible for saving new user to database - in the end, you are modifying the database.
