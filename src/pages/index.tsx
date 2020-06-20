@@ -7,7 +7,7 @@ import Layout from '../components/Layout';
 import { BlogPostsQuery } from '../../gen/graphql-types';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 
-const BLOG_PUBLISHED_DATE = new Date('09 May 2011 17:24 UTC').toISOString();
+const BLOG_PUBLISHED_DATE = new Date('09 May 2020 17:24 UTC').toISOString();
 
 export interface HomePage {
   data: BlogPostsQuery;
