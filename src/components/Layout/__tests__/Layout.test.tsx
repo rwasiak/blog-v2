@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-styled-components';
-import { render, theme } from '../../../../jest/customRender';
+import { render, theme } from 'customRender';
 import Layout from '../index';
 
 describe('Layout Component', () => {

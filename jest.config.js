@@ -1,10 +1,12 @@
+const path = require('path');
+
 module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest/setup-test-env.js'],
   setupFiles: [`<rootDir>/jest/loadershim.js`],
   transform: {
     '^.+\\.(tsx?|jsx?)$': `<rootDir>/jest/jest-preprocess.js`,
   },
-  moduleDirectories: ['node_modules', 'jest/customRender'],
+  moduleDirectories: ['node_modules', path.join(__dirname, 'jest')],
   moduleNameMapper: {
     'typeface-*': 'identity-obj-proxy',
     '.+\\.(css|styl|less|sass|scss)$': `identity-obj-proxy`,

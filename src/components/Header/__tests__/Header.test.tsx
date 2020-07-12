@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, axe } from '../../../../jest/customRender';
+import { render, axe } from 'customRender';
 import Header from '../index';
 
 describe('Header Component', () => {

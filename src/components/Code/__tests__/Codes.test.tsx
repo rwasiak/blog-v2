@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, axe } from '../../../../jest/customRender';
+import { render, axe } from 'customRender';
 import Code, { defaultProps } from '../index';
 
 const highlightComponentCode = `

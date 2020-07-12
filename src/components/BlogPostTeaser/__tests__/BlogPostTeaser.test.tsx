@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, axe } from '../../../../jest/customRender';
+import { render, axe } from 'customRender';
 import BlogPostTeaser from '../index';
 
 const teaserData = {
@@ -44,7 +44,6 @@ describe('BlogPostTeaser Component', () => {
     const { getByText, getByAltText } = render(
       <BlogPostTeaser blogPostData={teaserData} />,
     );
-
     getByText(teaserData.frontmatter.title);
     getByText(teaserData.frontmatter.teaser);
     getByText(teaserData.frontmatter.date);

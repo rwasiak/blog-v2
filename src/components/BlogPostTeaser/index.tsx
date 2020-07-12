@@ -39,7 +39,6 @@ const StyledImg = styled(Img).attrs(() => ({
 
 const BlogPostTeaser: React.FC<BlogPostTeaserProps> = ({ blogPostData }) => {
   const { fields, frontmatter } = blogPostData;
-
   if (!frontmatter || !fields || !fields.slug) {
     return null;
   }

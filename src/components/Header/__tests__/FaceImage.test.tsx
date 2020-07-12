@@ -1,6 +1,6 @@
 import React from 'react';
+import { render, axe } from 'customRender';
 import FaceImage from '../FaceImage';
-import { render, axe } from '../../../../jest/customRender';
 
 describe('FaceImage Component', () => {
   it('can render content', () => {

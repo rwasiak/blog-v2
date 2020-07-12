@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-styled-components';
-import { render, axe, theme } from '../../../../jest/customRender';
+import { render, axe, theme } from 'customRender';
 import Link from '../Link';
 
 const linkText = 'Link example';
