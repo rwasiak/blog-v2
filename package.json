@@ -63,6 +63,7 @@
     "eslint-plugin-react-hooks": "^3.0.0",
     "husky": "^4.2.3",
     "identity-obj-proxy": "^3.0.0",
+    "is-ci-cli": "^2.1.2",
     "jest": "^26.0.1",
     "jest-axe": "^3.4.0",
     "jest-junit": "^10.0.0",
