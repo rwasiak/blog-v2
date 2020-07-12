@@ -24,7 +24,7 @@ const Image = () => {
   return (
     <Img
       fluid={data.placeholderImage?.childImageSharp?.fluid}
-      alt="autor bloga Remigiusz Wasiak"
+      alt="Blog's author Remigiusz Wasiak"
     />
   );
 };

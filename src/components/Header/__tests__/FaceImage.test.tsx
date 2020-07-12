@@ -6,7 +6,7 @@ describe('FaceImage Component', () => {
   it('can render content', () => {
     const { getByAltText } = render(<FaceImage />);
 
-    getByAltText('autor bloga Remigiusz Wasiak');
+    getByAltText("Blog's author Remigiusz Wasiak");
   });
 
   it('pass a11y checks', async () => {
